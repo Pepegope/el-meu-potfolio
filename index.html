@@ -18,9 +18,15 @@
 	<header class="site-header">
 		<nav class="nav shell" aria-label="Navegación principal">
 			<a class="wordmark" href="#inicio" aria-label="Pepe Gonzálvez, inicio"><span>PG</span><span class="wordmark-dot">.</span></a>
-			<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú de navegación">
-				<span></span><span></span>
-			</button>
+			<div class="nav-actions">
+				<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false">
+					<span class="theme-toggle-icon" aria-hidden="true">☀️</span>
+					<span class="theme-toggle-text">Tema</span>
+				</button>
+				<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú de navegación">
+					<span></span><span></span>
+				</button>
+			</div>
 			<ul class="nav-links" id="nav-links">
 				<li><a href="#sobre-mi">Sobre mí</a></li>
 				<li><a href="#formacion">Formación</a></li>
