@@ -1,6 +1,9 @@
 // Menú adaptable para pantallas pequeñas.
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
+const themeToggle = document.querySelector("#theme-toggle");
+const themeIcon = document.querySelector(".theme-toggle-icon");
+const themeText = document.querySelector(".theme-toggle-text");
 
 function closeMenu() {
 	menuToggle.setAttribute("aria-expanded", "false");
@@ -21,6 +24,26 @@ navLinks.addEventListener("click", (event) => {
 
 document.addEventListener("keydown", (event) => {
 	if (event.key === "Escape") closeMenu();
+});
+
+function applyTheme(theme) {
+	document.documentElement.setAttribute("data-theme", theme);
+	const isDark = theme === "dark";
+	themeToggle.setAttribute("aria-label", isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+	themeToggle.setAttribute("aria-pressed", String(isDark));
+	themeIcon.textContent = isDark ? "🌙" : "☀️";
+	themeText.textContent = isDark ? "Oscuro" : "Claro";
+	localStorage.setItem("portfolio-theme", theme);
+}
+
+const savedTheme = localStorage.getItem("portfolio-theme");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+applyTheme(initialTheme);
+
+themeToggle.addEventListener("click", () => {
+	const nextTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+	applyTheme(nextTheme);
 });
 
 // Entrada suave de los elementos al llegar a la pantalla.
